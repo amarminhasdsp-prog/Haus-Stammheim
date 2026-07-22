@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 const NAV_ITEMS = [
   { to: "/", label: "Home" },
-  { to: "/grundriss", label: "Grundriss & Zimmer" },
   { to: "/bewerbung", label: "Bewerbung" },
 ] as const;
 
@@ -143,7 +142,7 @@ export function Header(): JSX.Element {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <NavLink to="/" className="text-h4 text-text-primary cursor-pointer">
-          WG&nbsp;am&nbsp;Stadtpark
+          WG&nbsp;Stammheim
         </NavLink>
 
         <nav aria-label="Hauptnavigation" className="hidden md:block">

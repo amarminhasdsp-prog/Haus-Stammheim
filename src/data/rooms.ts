@@ -52,7 +52,7 @@ export const rooms: Room[] = [
       "Aufenthaltsraum (EG)",
       "Wintergarten (EG)",
       "Waschmaschine/Trockner",
-      "WLAN inklusive",
+      
     ],
     bilder: [
       { src: "/images/zimmer1.jpeg", alt: "Zimmer 1: Doppelbett mit LED-Kopfteil, Kleiderschrank, Regal und Parkettboden" },
@@ -65,7 +65,7 @@ export const rooms: Room[] = [
       "Strom",
       "Wasser/Abwasser",
       "Heizung",
-      "Internet/WLAN",
+      
       "Müllentsorgung",
       "GEZ-Anteil",
     ],
@@ -94,7 +94,7 @@ export const rooms: Room[] = [
       "Aufenthaltsraum (EG)",
       "Wintergarten (EG)",
       "Waschmaschine/Trockner",
-      "WLAN inklusive",
+      
     ],
     bilder: [
       { src: "/images/zimmer2.jpeg", alt: "Zimmer 2: Doppelbett mit Nachttisch und Teppich auf Parkettboden" },
@@ -107,7 +107,7 @@ export const rooms: Room[] = [
       "Strom",
       "Wasser/Abwasser",
       "Heizung",
-      "Internet/WLAN",
+      
       "Müllentsorgung",
       "GEZ-Anteil",
     ],
@@ -133,7 +133,7 @@ export const rooms: Room[] = [
     gemeinschaft: [
       "Kein Teilen noetig — eigene Kueche und Bad",
       "Garten-Mitbenutzung",
-      "WLAN inklusive",
+      
     ],
     bilder: [
       { src: "https://picsum.photos/seed/apartment-eg-a/800/600", alt: "1-Zimmer-Apartment: Wohnbereich" },
@@ -147,7 +147,7 @@ export const rooms: Room[] = [
       "Strom",
       "Wasser/Abwasser",
       "Heizung",
-      "Internet/WLAN",
+      
       "Müllentsorgung",
       "GEZ-Anteil",
     ],
@@ -173,7 +173,7 @@ export const rooms: Room[] = [
       "Aufenthaltsraum im OG",
       "Gemeinschaftskueche (EG)",
       "Waschmaschine/Trockner",
-      "WLAN inklusive",
+      
     ],
     bilder: [
       { src: "https://picsum.photos/seed/zimmer-3-a/800/600", alt: "Zimmer 3: Kompaktes Zimmer im Obergeschoss" },
@@ -187,7 +187,7 @@ export const rooms: Room[] = [
       "Strom",
       "Wasser/Abwasser",
       "Heizung",
-      "Internet/WLAN",
+      
       "Müllentsorgung",
       "GEZ-Anteil",
     ],
@@ -213,7 +213,7 @@ export const rooms: Room[] = [
       "Aufenthaltsraum im OG",
       "Gemeinschaftskueche (EG)",
       "Waschmaschine/Trockner",
-      "WLAN inklusive",
+      
     ],
     bilder: [
       { src: "https://picsum.photos/seed/zimmer-4-a/800/600", alt: "Zimmer 4: Zimmer im Obergeschoss" },
@@ -227,7 +227,7 @@ export const rooms: Room[] = [
       "Strom",
       "Wasser/Abwasser",
       "Heizung",
-      "Internet/WLAN",
+      
       "Müllentsorgung",
       "GEZ-Anteil",
     ],

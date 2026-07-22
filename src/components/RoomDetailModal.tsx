@@ -28,14 +28,14 @@ export function RoomDetailModal({ room, onClose }: RoomDetailModalProps): JSX.El
       <div className="flex flex-col gap-8">
 
         {/* Bildergalerie */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className={room.bilder.length === 1 ? "" : "grid grid-cols-1 gap-3 sm:grid-cols-2"}>
           {room.bilder.map((bild) => (
             <img
               key={bild.src}
               src={bild.src}
               alt={bild.alt}
               loading="lazy"
-              className="aspect-[4/3] w-full rounded-lg object-cover"
+              className={`w-full rounded-lg object-cover ${room.bilder.length === 1 ? "aspect-[16/9] max-h-[400px]" : "aspect-[4/3]"}`}
             />
           ))}
         </div>

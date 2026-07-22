@@ -67,12 +67,12 @@ export function HomePage(): JSX.Element {
             Fünf Einheiten, ein Haus, Pauschalmiete — alle Nebenkosten inklusive.
             Stadtbahn U15 in 5 Minuten, Hauptbahnhof in 20 Minuten.
           </p>
-          <Link
-            to="/grundriss"
+          <a
+            href="#zimmer"
             className="mt-8 inline-flex min-h-11 items-center justify-center rounded-md bg-accent px-6 text-body-strong text-white transition-colors duration-150 hover:bg-accent-hover cursor-pointer"
           >
             Zimmer ansehen
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -106,27 +106,13 @@ export function HomePage(): JSX.Element {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-h2 text-text-primary">Verfuegbare Zimmer</h2>
-          <Link
-            to="/grundriss"
-            className="hidden text-body-strong text-accent transition-colors duration-150 hover:text-accent-hover sm:inline cursor-pointer"
-          >
-            Alle Zimmer &amp; Grundriss →
-          </Link>
-        </div>
+      <section id="zimmer" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <h2 className="text-h2 text-text-primary">Verfuegbare Zimmer</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rooms.map((room) => (
             <RoomCard key={room.id} room={room} as="link" />
           ))}
         </div>
-        <Link
-          to="/grundriss"
-          className="mt-6 inline-flex text-body-strong text-accent transition-colors duration-150 hover:text-accent-hover sm:hidden cursor-pointer"
-        >
-          Alle Zimmer &amp; Grundriss →
-        </Link>
       </section>
 
       <section className="border-t border-border bg-surface">
@@ -163,6 +149,20 @@ export function HomePage(): JSX.Element {
               titel="Stuttgart City"
               beschreibung="Innenstadt, Uni Stuttgart und Hochschulen in 20–30 Minuten per Stadtbahn erreichbar."
               icon="city"
+            />
+          </div>
+          {/* Google Maps Karte */}
+          <div className="mt-8 overflow-hidden rounded-lg border border-border">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.5!2d9.195!3d48.8425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799db5b3b0a9c9d%3A0x3a1234567890!2sStammheim%2C+Stuttgart!5e0!3m2!1sde!2sde!4v1"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Standort der WG in Stuttgart-Stammheim auf Google Maps"
+              className="w-full"
             />
           </div>
         </div>

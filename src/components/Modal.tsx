@@ -69,7 +69,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps): JSX.Ele
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
       <button
         type="button"
         aria-label="Hintergrund, Dialog schliessen"
@@ -81,7 +81,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps): JSX.Ele
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-background p-6 shadow-md sm:p-8"
+        className="relative z-10 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-background p-4 shadow-md sm:p-6 lg:p-8"
       >
         <div className="mb-4 flex items-start justify-between gap-4">
           <h2 id={titleId} className="text-h3 text-text-primary">
