@@ -2,11 +2,57 @@ import { Link } from "react-router-dom";
 import { rooms } from "../data/rooms";
 import { RoomCard } from "../components/RoomCard";
 
+const ICONS: Record<string, JSX.Element> = {
+  tram: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M4 11V8a8 8 0 0116 0v3M4 11v7a2 2 0 002 2h12a2 2 0 002-2v-7M4 11h16M8 15h.01M16 15h.01M9 20v2M15 20v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  bus: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M5 10V7a7 7 0 0114 0v3M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7M5 10h14M7.5 14h.01M16.5 14h.01M8 19v2M16 19v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  shop: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M3 3h18v4H3V3zM5 7v12a2 2 0 002 2h10a2 2 0 002-2V7M10 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  health: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M12 6v12M6 12h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+    </svg>
+  ),
+  nature: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M12 3L4 14h5v7h6v-7h5L12 3z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+  city: (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-accent" aria-hidden="true">
+      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h2M13 9h2M9 13h2M13 13h2M9 17h2M13 17h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  ),
+};
+
+function LageKarte({ titel, beschreibung, icon }: { titel: string; beschreibung: string; icon: string }) {
+  return (
+    <div className="flex gap-3 rounded-lg border border-border bg-surface-raised p-4">
+      <div className="shrink-0">{ICONS[icon]}</div>
+      <div>
+        <h3 className="font-semibold text-text-primary">{titel}</h3>
+        <p className="mt-1 text-sm text-text-secondary">{beschreibung}</p>
+      </div>
+    </div>
+  );
+}
+
 const HAUS_FAKTEN = [
-  { label: "Lage", value: "Ruhige Seitenstrasse, 5 Min. zur U-Bahn" },
-  { label: "Zimmer", value: "5 Zimmer, 3 davon aktuell verfuegbar" },
-  { label: "Ausstattung", value: "Vollausgestattete Kueche, Waschmaschine im Haus" },
-  { label: "Nebenkosten", value: "In der Kaltmiete teilweise inkludiert (siehe Bewerbung)" },
+  { label: "Lage", value: "Stuttgart-Stammheim, ruhige Wohngegend" },
+  { label: "ÖPNV", value: "Stadtbahn U15 in 5 Min. (direkt zum Hauptbahnhof in 20 Min.)" },
+  { label: "Zimmer", value: "5 Einheiten (3 WG-Zimmer + 1 Apartment), alle verfuegbar" },
+  { label: "Pauschalmiete", value: "Alle Nebenkosten inklusive (Strom, Wasser, Heizung, WLAN, GEZ)" },
 ];
 
 export function HomePage(): JSX.Element {
@@ -15,11 +61,11 @@ export function HomePage(): JSX.Element {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-[2rem] font-bold leading-tight text-text-primary sm:text-h1">
-            WG-Zimmer in ruhiger Lage
+            WG-Zimmer in Stuttgart-Stammheim
           </h1>
           <p className="mt-4 text-body text-text-secondary">
-            Fuenf Zimmer, ein Haus, kurze Wege. Finden Sie Ihr neues Zimmer und
-            bewerben Sie sich in wenigen Minuten online.
+            Fünf Einheiten, ein Haus, Pauschalmiete — alle Nebenkosten inklusive.
+            Stadtbahn U15 in 5 Minuten, Hauptbahnhof in 20 Minuten.
           </p>
           <Link
             to="/grundriss"
@@ -84,13 +130,48 @@ export function HomePage(): JSX.Element {
       </section>
 
       <section className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <h2 className="text-h2 text-text-primary">Lage &amp; Umgebung</h2>
+          <p className="mt-2 text-text-secondary">Stuttgart-Stammheim — ruhig wohnen, schnell in der Stadt.</p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <LageKarte
+              titel="Stadtbahn U15"
+              beschreibung="Haltestelle Stammheim in 5 Gehminuten. Direkte Verbindung zum Hauptbahnhof Stuttgart (ca. 20 Min.), Takt alle 10 Minuten."
+              icon="tram"
+            />
+            <LageKarte
+              titel="Bus 50 / 52"
+              beschreibung="Busverbindungen nach Zuffenhausen, Kornwestheim und zu weiteren S-Bahn-Anschlüssen in der Umgebung."
+              icon="bus"
+            />
+            <LageKarte
+              titel="Einkaufen"
+              beschreibung="Aldi, Edeka und Bäckereien in wenigen Minuten erreichbar. Alles für den täglichen Bedarf vor Ort."
+              icon="shop"
+            />
+            <LageKarte
+              titel="Apotheke & Ärzte"
+              beschreibung="Freihof-Apotheke Stammheim und Hausärzte direkt im Stadtteil."
+              icon="health"
+            />
+            <LageKarte
+              titel="Naherholung"
+              beschreibung="Grüne, ruhige Wohngegend mit Parks. Stammheimer Höhe und Grünanlagen direkt um die Ecke."
+              icon="nature"
+            />
+            <LageKarte
+              titel="Stuttgart City"
+              beschreibung="Innenstadt, Uni Stuttgart und Hochschulen in 20–30 Minuten per Stadtbahn erreichbar."
+              icon="city"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6">
           <p className="text-h4 text-text-primary">
-            Seit mehreren Jahren vermieten wir zuverlaessig an Studierende und
-            Berufstaetige.
-          </p>
-          <p className="mt-2 text-small text-text-muted">
-            (Platzhalter-Text — bitte durch echte Angaben ersetzen)
+            Alle Zimmer sofort verfügbar — Pauschalmiete, keine versteckten Kosten.
           </p>
           <Link
             to="/bewerbung"
