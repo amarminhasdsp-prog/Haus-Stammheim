@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+  }
+
+  /* Sichtbarer Fokus-Ring auf allen interaktiven Elementen (Design-System Abschnitt 5/9) */
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex] {
+    @apply focus-visible:outline-none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+}
