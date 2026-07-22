@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { rooms } from "../data/rooms";
+import type { Room } from "../data/rooms";
 import { RoomCard } from "../components/RoomCard";
+import { RoomDetailModal } from "../components/RoomDetailModal";
 
 const ICONS: Record<string, JSX.Element> = {
   tram: (
@@ -56,8 +59,11 @@ const HAUS_FAKTEN = [
 ];
 
 export function HomePage(): JSX.Element {
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+
   return (
     <>
+      <RoomDetailModal room={selectedRoom} onClose={() => setSelectedRoom(null)} />
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-[2rem] font-bold leading-tight text-text-primary sm:text-h1">
@@ -110,7 +116,7 @@ export function HomePage(): JSX.Element {
         <h2 className="text-h2 text-text-primary">Verfuegbare Zimmer</h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rooms.map((room) => (
-            <RoomCard key={room.id} room={room} as="link" />
+            <RoomCard key={room.id} room={room} onSelect={setSelectedRoom} />
           ))}
         </div>
       </section>

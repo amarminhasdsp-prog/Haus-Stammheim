@@ -30,13 +30,15 @@ export function StatusBadge({ status }: { status: Room["status"] }): JSX.Element
 interface RoomCardProps {
   room: Room;
   onSelect?: (room: Room) => void;
-  /** Wird als Link gerendert (Landing Page) statt als Button (Grundriss-Fallback-Liste mit Modal) */
-  as?: "link" | "button";
 }
 
-export function RoomCard({ room, onSelect, as = "button" }: RoomCardProps): JSX.Element {
-  const content = (
-    <>
+export function RoomCard({ room, onSelect }: RoomCardProps): JSX.Element {
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect?.(room)}
+      className="block w-full text-left rounded-lg border border-border bg-surface-raised shadow-xs transition-[transform,box-shadow] duration-150 hover:shadow-sm hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 cursor-pointer"
+    >
       <div className="aspect-[4/3] w-full overflow-hidden rounded-t-lg bg-surface">
         <img
           src={room.bilder[0]?.src}
@@ -58,27 +60,6 @@ export function RoomCard({ room, onSelect, as = "button" }: RoomCardProps): JSX.
         </p>
         <p className="text-small text-text-secondary">{room.kurzbeschreibung}</p>
       </div>
-    </>
-  );
-
-  const cardClassName =
-    "block rounded-lg border border-border bg-surface-raised shadow-xs transition-[transform,box-shadow] duration-150 hover:shadow-sm hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 cursor-pointer";
-
-  if (as === "link") {
-    return (
-      <a href="/grundriss" className={cardClassName}>
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={() => onSelect?.(room)}
-      className={`${cardClassName} w-full text-left`}
-    >
-      {content}
     </button>
   );
 }
