@@ -1,47 +1,30 @@
 /**
- * Zentrale Datenquelle fuer alle vermietbaren Einheiten im Haus.
- *
- * Das Haus hat 2 Etagen (EG + OG) mit insgesamt 5 vermietbaren Einheiten.
- * Bild-Hinweis: Zimmer 1, Zimmer 2 und das grosse Bad im OG haben echte
- * Fotos, die spaeter als statische Assets eingebunden werden. Bis dahin
- * bleiben picsum.photos-Platzhalter fuer ALLE Zimmer, mit alt-Texten, die
- * bereits die echte Ausstattung beschreiben (leichter Austausch spaeter,
- * ohne Komponenten anpassen zu muessen).
+ * Zentrale Datenquelle fuer alle vermietbaren Einheiten im Haus Stammheim.
+ * Hardcoded — kein Backend, keine Datenbank.
  */
 
 export interface RoomImage {
-  /** Absolute Bild-URL (Platzhalter: picsum.photos mit deterministischem seed) */
   src: string;
-  /** Aussagekraeftiger alt-Text, beschreibt die ECHTE Ausstattung (siehe design-system.md Abschnitt 9) */
   alt: string;
 }
 
 export interface Room {
-  /** Eindeutige, URL-sichere ID (wird u. a. als ?zimmer=<id> verwendet) */
   id: string;
-  /** Anzeigename, z. B. "Zimmer 1" oder ein eigener Name */
   name: string;
-  /** Groesse in Quadratmetern */
   qm: number;
-  /** Pauschalmiete in Euro pro Monat */
   preisEuro: number;
-  /** Verfuegbarkeitsstatus */
   status: "verfuegbar" | "vermietet";
-  /** Kurzer Ein-Zeiler fuer Kartenansicht (max. ca. 60 Zeichen) */
   kurzbeschreibung: string;
-  /** Ausstattungsliste als Stichpunkte */
+  beschreibung: string;
   ausstattung: string[];
-  /** 2-3 Platzhalterbilder pro Zimmer */
+  gemeinschaft: string[];
   bilder: RoomImage[];
-  /** Etage, auf der sich die Einheit befindet — steuert, auf welchem Grundriss sie erscheint */
   floor: "eg" | "og";
-  /** Position/Groesse des Hotspots auf dem jeweiligen Etagen-Grundriss-SVG (Prozentwerte 0-100) */
-  hotspot: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
+  etageLabel: string;
+  verfuegbarAb: string;
+  mietart: string;
+  inklusivLeistungen: string[];
+  hotspot: { x: number; y: number; width: number; height: number };
 }
 
 export const rooms: Room[] = [
@@ -52,18 +35,40 @@ export const rooms: Room[] = [
     preisEuro: 750,
     status: "verfuegbar",
     kurzbeschreibung: "Grosses Zimmer mit Parkettboden im Erdgeschoss.",
+    beschreibung:
+      "Das groesste Zimmer im Haus mit 25 qm bietet viel Platz zum Wohnen und Arbeiten. Hochwertiger Parkettboden, modernes Doppelbett mit integrierter LED-Beleuchtung am Kopfteil, geräumiger Kleiderschrank und ein offenes Regal sorgen dafuer, dass du direkt einziehen kannst. Die Deckenspots setzen den Raum stimmungsvoll in Szene. Das Zimmer liegt im Erdgeschoss mit direktem Zugang zu Kueche, Bad und dem grossen Aufenthaltsraum.",
     ausstattung: [
       "Parkettboden",
       "Doppelbett mit LED-Kopfteil",
-      "Kleiderschrank",
-      "Regal",
-      "Deckenspots",
-      "Fenster",
+      "Kleiderschrank (Schiebetüren)",
+      "Offenes Regal",
+      "Deckenspots (dimmbar)",
+      "Fenster mit Blick nach draussen",
+      "Heizung",
+    ],
+    gemeinschaft: [
+      "Gemeinschaftskueche (EG)",
+      "Badezimmer (EG)",
+      "Aufenthaltsraum (EG)",
+      "Wintergarten (EG)",
+      "Waschmaschine/Trockner",
+      "WLAN inklusive",
     ],
     bilder: [
-      { src: "/images/zimmer1.jpeg", alt: "Zimmer 1: Doppelbett mit LED-Kopfteil-Beleuchtung, Kleiderschrank und Regal auf Parkettboden" },
+      { src: "/images/zimmer1.jpeg", alt: "Zimmer 1: Doppelbett mit LED-Kopfteil, Kleiderschrank, Regal und Parkettboden" },
     ],
     floor: "eg",
+    etageLabel: "Erdgeschoss",
+    verfuegbarAb: "Sofort",
+    mietart: "Pauschalmiete (alle Nebenkosten inklusive)",
+    inklusivLeistungen: [
+      "Strom",
+      "Wasser/Abwasser",
+      "Heizung",
+      "Internet/WLAN",
+      "Müllentsorgung",
+      "GEZ-Anteil",
+    ],
     hotspot: { x: 5, y: 6, width: 32, height: 40 },
   },
   {
@@ -73,40 +78,79 @@ export const rooms: Room[] = [
     preisEuro: 700,
     status: "verfuegbar",
     kurzbeschreibung: "Gemuetliches Zimmer mit Parkettboden im Erdgeschoss.",
+    beschreibung:
+      "Ein gemuetliches Zimmer mit 18 qm und schonem Parkettboden. Das Doppelbett mit Nachttisch ist bereits vorhanden, ein weicher Teppich macht den Raum wohnlich. Liegt direkt neben dem Aufenthaltsraum und hat kurze Wege zu Kueche und Bad. Ideal fuer jemanden der es kompakt aber gemuetlich mag.",
     ausstattung: [
       "Parkettboden",
       "Doppelbett mit Nachttisch",
       "Teppich",
       "Deckenleuchte",
+      "Heizung",
+      "Fenster",
+    ],
+    gemeinschaft: [
+      "Gemeinschaftskueche (EG)",
+      "Badezimmer (EG)",
+      "Aufenthaltsraum (EG)",
+      "Wintergarten (EG)",
+      "Waschmaschine/Trockner",
+      "WLAN inklusive",
     ],
     bilder: [
       { src: "/images/zimmer2.jpeg", alt: "Zimmer 2: Doppelbett mit Nachttisch und Teppich auf Parkettboden" },
     ],
     floor: "eg",
+    etageLabel: "Erdgeschoss",
+    verfuegbarAb: "Sofort",
+    mietart: "Pauschalmiete (alle Nebenkosten inklusive)",
+    inklusivLeistungen: [
+      "Strom",
+      "Wasser/Abwasser",
+      "Heizung",
+      "Internet/WLAN",
+      "Müllentsorgung",
+      "GEZ-Anteil",
+    ],
     hotspot: { x: 40, y: 6, width: 26, height: 40 },
   },
   {
     id: "apartment-eg",
-    // Hinweis: Im Auftrag wurde keine qm-Zahl fuer das Apartment genannt.
-    // 28 qm ist eine plausible Platzhalter-Schaetzung fuer eine eigenstaendige
-    // Einheit mit Kueche+Bad — bitte durch die echte Wohnflaeche ersetzen.
     name: "1-Zimmer-Apartment",
     qm: 28,
     preisEuro: 800,
     status: "verfuegbar",
-    kurzbeschreibung: "Eigenstaendige Einheit mit separatem Zugang, Kueche und Bad inklusive.",
+    kurzbeschreibung: "Eigenstaendige Einheit mit Kueche und Bad — komplett autark.",
+    beschreibung:
+      "Das 1-Zimmer-Apartment ist eine komplett eigenstaendige Wohneinheit mit separatem Eingang ueber eine eigene Treppe an der rechten Hausseite. Eigene Kueche und eigenes Bad — du teilst nichts mit den anderen Bewohnern. Perfekt fuer jemanden der seine Ruhe will aber trotzdem in einer Hausgemeinschaft lebt. Die Pauschalmiete deckt alle Nebenkosten ab.",
     ausstattung: [
-      "Eigene Kueche",
-      "Eigenes Bad",
-      "Separater Eingang (Treppe rechts)",
+      "Eigene Kueche (komplett ausgestattet)",
+      "Eigenes Badezimmer",
+      "Separater Eingang (eigene Treppe)",
       "Komplett autark",
+      "Heizung",
+      "Fenster",
+    ],
+    gemeinschaft: [
+      "Kein Teilen noetig — eigene Kueche und Bad",
+      "Garten-Mitbenutzung",
+      "WLAN inklusive",
     ],
     bilder: [
-      { src: "https://picsum.photos/seed/apartment-eg-a/800/600", alt: "1-Zimmer-Apartment: Eigene Kueche der autarken Einheit" },
-      { src: "https://picsum.photos/seed/apartment-eg-b/800/600", alt: "1-Zimmer-Apartment: Eigenes Bad" },
-      { src: "https://picsum.photos/seed/apartment-eg-c/800/600", alt: "1-Zimmer-Apartment: Separater Eingang ueber die Treppe rechts" },
+      { src: "https://picsum.photos/seed/apartment-eg-a/800/600", alt: "1-Zimmer-Apartment: Wohnbereich" },
+      { src: "https://picsum.photos/seed/apartment-eg-b/800/600", alt: "1-Zimmer-Apartment: Eigene Kueche" },
     ],
     floor: "eg",
+    etageLabel: "Erdgeschoss (separater Zugang)",
+    verfuegbarAb: "Sofort",
+    mietart: "Pauschalmiete (alle Nebenkosten inklusive)",
+    inklusivLeistungen: [
+      "Strom",
+      "Wasser/Abwasser",
+      "Heizung",
+      "Internet/WLAN",
+      "Müllentsorgung",
+      "GEZ-Anteil",
+    ],
     hotspot: { x: 70, y: 6, width: 25, height: 40 },
   },
   {
@@ -115,18 +159,38 @@ export const rooms: Room[] = [
     qm: 6,
     preisEuro: 450,
     status: "verfuegbar",
-    kurzbeschreibung: "Kompaktes, ruhiges Zimmer im Obergeschoss.",
+    kurzbeschreibung: "Kompaktes Zimmer im Obergeschoss — guenstiger Einstieg.",
+    beschreibung:
+      "Das kleinste Zimmer im Haus, aber perfekt als Schlafzimmer wenn du den grossen Aufenthaltsraum im OG als Wohn-/Arbeitsbereich nutzt. Ruhige Lage, Zugang zum hochwertigen grossen Bad (Marmorboden, Glasdusche mit Massageduesen, Handtuchheizkoerper) und dem geraeumigen Aufenthaltsraum. Ideal fuer Studenten oder Berufseinsteiger die guenstig wohnen wollen.",
     ausstattung: [
-      "Kompakt",
+      "Kompaktes Zimmer",
       "Ruhige Lage",
-      "Zugang zum grossen Bad im OG",
-      "Zugang zum Aufenthaltsraum",
+      "Heizung",
+      "Fenster",
+    ],
+    gemeinschaft: [
+      "Grosses Bad im OG (Marmor, Glasdusche, Massageduesen)",
+      "Aufenthaltsraum im OG",
+      "Gemeinschaftskueche (EG)",
+      "Waschmaschine/Trockner",
+      "WLAN inklusive",
     ],
     bilder: [
-      { src: "https://picsum.photos/seed/zimmer-3-a/800/600", alt: "Zimmer 3: Kompaktes Zimmer in ruhiger Lage im Obergeschoss" },
-      { src: "/images/bad-og.jpeg", alt: "Grosses Bad im OG: Marmorboden, Glasdusche mit Massageduesen, Handtuchheizkoerper" },
+      { src: "https://picsum.photos/seed/zimmer-3-a/800/600", alt: "Zimmer 3: Kompaktes Zimmer im Obergeschoss" },
+      { src: "/images/bad-og.jpeg", alt: "Grosses Bad im OG: Marmorboden, Glasdusche mit Massageduesen" },
     ],
     floor: "og",
+    etageLabel: "Obergeschoss",
+    verfuegbarAb: "Sofort",
+    mietart: "Pauschalmiete (alle Nebenkosten inklusive)",
+    inklusivLeistungen: [
+      "Strom",
+      "Wasser/Abwasser",
+      "Heizung",
+      "Internet/WLAN",
+      "Müllentsorgung",
+      "GEZ-Anteil",
+    ],
     hotspot: { x: 5, y: 6, width: 22, height: 30 },
   },
   {
@@ -136,16 +200,37 @@ export const rooms: Room[] = [
     preisEuro: 600,
     status: "verfuegbar",
     kurzbeschreibung: "Zimmer mit mehr Platz im Obergeschoss.",
+    beschreibung:
+      "Mit 10 qm etwas groesser als Zimmer 3 und damit komfortabler fuer den Alltag. Du teilst dir das hochwertige grosse Bad (Marmorboden, Glasdusche mit Massageduesen, Handtuchheizkoerper) und den geraeumigen Aufenthaltsraum im OG mit nur einem weiteren Mitbewohner. Ruhige Lage, gutes Preis-Leistungs-Verhaeltnis.",
     ausstattung: [
-      "Mehr Platz als Zimmer 3",
-      "Zugang zum grossen Bad im OG",
-      "Zugang zum Aufenthaltsraum",
+      "Mehr Platz (10 qm)",
+      "Ruhige Lage",
+      "Heizung",
+      "Fenster",
+    ],
+    gemeinschaft: [
+      "Grosses Bad im OG (Marmor, Glasdusche, Massageduesen)",
+      "Aufenthaltsraum im OG",
+      "Gemeinschaftskueche (EG)",
+      "Waschmaschine/Trockner",
+      "WLAN inklusive",
     ],
     bilder: [
-      { src: "https://picsum.photos/seed/zimmer-4-a/800/600", alt: "Zimmer 4: Geraeumiges Zimmer im Obergeschoss" },
+      { src: "https://picsum.photos/seed/zimmer-4-a/800/600", alt: "Zimmer 4: Zimmer im Obergeschoss" },
       { src: "/images/bad-og.jpeg", alt: "Grosses Bad im OG: Marmorboden, Glasdusche mit Massageduesen" },
     ],
     floor: "og",
+    etageLabel: "Obergeschoss",
+    verfuegbarAb: "Sofort",
+    mietart: "Pauschalmiete (alle Nebenkosten inklusive)",
+    inklusivLeistungen: [
+      "Strom",
+      "Wasser/Abwasser",
+      "Heizung",
+      "Internet/WLAN",
+      "Müllentsorgung",
+      "GEZ-Anteil",
+    ],
     hotspot: { x: 65, y: 6, width: 30, height: 30 },
   },
 ];
@@ -154,7 +239,6 @@ export function getRoomById(id: string): Room | undefined {
   return rooms.find((room) => room.id === id);
 }
 
-/** Liefert alle Zimmer einer Etage, in fester Reihenfolge wie in `rooms` definiert. */
 export function getRoomsByFloor(floor: Room["floor"]): Room[] {
   return rooms.filter((room) => room.floor === floor);
 }
