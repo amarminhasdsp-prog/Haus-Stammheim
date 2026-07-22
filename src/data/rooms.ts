@@ -61,9 +61,7 @@ export const rooms: Room[] = [
       "Fenster",
     ],
     bilder: [
-      { src: "https://picsum.photos/seed/zimmer-1-a/800/600", alt: "Zimmer 1: Doppelbett mit LED-Kopfteil-Beleuchtung auf Parkettboden" },
-      { src: "https://picsum.photos/seed/zimmer-1-b/800/600", alt: "Zimmer 1: Kleiderschrank und Regal unter Deckenspots" },
-      { src: "https://picsum.photos/seed/zimmer-1-c/800/600", alt: "Zimmer 1: Gesamtansicht mit Fenster und Parkettboden" },
+      { src: "/images/zimmer1.jpeg", alt: "Zimmer 1: Doppelbett mit LED-Kopfteil-Beleuchtung, Kleiderschrank und Regal auf Parkettboden" },
     ],
     floor: "eg",
     hotspot: { x: 5, y: 6, width: 32, height: 40 },
@@ -82,8 +80,7 @@ export const rooms: Room[] = [
       "Deckenleuchte",
     ],
     bilder: [
-      { src: "https://picsum.photos/seed/zimmer-2-a/800/600", alt: "Zimmer 2: Doppelbett mit Nachttisch auf Parkettboden" },
-      { src: "https://picsum.photos/seed/zimmer-2-b/800/600", alt: "Zimmer 2: Teppich und Deckenleuchte" },
+      { src: "/images/zimmer2.jpeg", alt: "Zimmer 2: Doppelbett mit Nachttisch und Teppich auf Parkettboden" },
     ],
     floor: "eg",
     hotspot: { x: 40, y: 6, width: 26, height: 40 },
@@ -127,7 +124,7 @@ export const rooms: Room[] = [
     ],
     bilder: [
       { src: "https://picsum.photos/seed/zimmer-3-a/800/600", alt: "Zimmer 3: Kompaktes Zimmer in ruhiger Lage im Obergeschoss" },
-      { src: "https://picsum.photos/seed/zimmer-3-b/800/600", alt: "Zimmer 3: Gesamtansicht" },
+      { src: "/images/bad-og.jpeg", alt: "Grosses Bad im OG: Marmorboden, Glasdusche mit Massageduesen, Handtuchheizkoerper" },
     ],
     floor: "og",
     hotspot: { x: 5, y: 6, width: 22, height: 30 },
@@ -146,7 +143,7 @@ export const rooms: Room[] = [
     ],
     bilder: [
       { src: "https://picsum.photos/seed/zimmer-4-a/800/600", alt: "Zimmer 4: Geraeumiges Zimmer im Obergeschoss" },
-      { src: "https://picsum.photos/seed/zimmer-4-b/800/600", alt: "Zimmer 4: Gesamtansicht" },
+      { src: "/images/bad-og.jpeg", alt: "Grosses Bad im OG: Marmorboden, Glasdusche mit Massageduesen" },
     ],
     floor: "og",
     hotspot: { x: 65, y: 6, width: 30, height: 30 },
