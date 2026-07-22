@@ -54,7 +54,7 @@ function LageKarte({ titel, beschreibung, icon }: { titel: string; beschreibung:
 const HAUS_FAKTEN = [
   { label: "Lage", value: "Stuttgart-Stammheim, ruhige Wohngegend" },
   { label: "ÖPNV", value: "Stadtbahn U15 in 5 Min. (direkt zum Hauptbahnhof in 20 Min.)" },
-  { label: "Zimmer", value: "5 Einheiten (3 WG-Zimmer + 1 Apartment), alle verfuegbar" },
+  { label: "Zimmer", value: "5 WG-Zimmer, alle verfuegbar" },
   { label: "Pauschalmiete", value: "Alle Nebenkosten inklusive (Strom, Wasser, Heizung, WLAN, GEZ)" },
 ];
 
